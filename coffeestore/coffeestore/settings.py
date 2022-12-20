@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'core.apps.CoreConfig',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -38,8 +39,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "coffee.apps.CoffeeConfig",
+    "tables.apps.TablesConfig",
     "rest_framework",
     "django_filters",
+    'django_tables2',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [

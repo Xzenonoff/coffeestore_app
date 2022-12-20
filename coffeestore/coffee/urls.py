@@ -16,5 +16,5 @@ router.register('sale', SaleViewSet)
 router.register('department', DepartmentViewSet)
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]

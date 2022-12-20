@@ -14,8 +14,17 @@ class Client(models.Model):
         db_table = 'client'
 
 
+class TypeOfCoffee(models.Model):
+    coffee_code = models.IntegerField(db_column='Coffee_code', primary_key=True)  # Field name made lowercase.
+    coffee_type_name = models.TextField(db_column='Coffee_type_name')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'type_of_coffee'
+
+
 class Coffee(models.Model):
-    coffee_code = models.OneToOneField('TypeOfCoffee', models.DO_NOTHING, db_column='Coffee_code', primary_key=True)  # Field name made lowercase.
+    coffee_code = models.OneToOneField(TypeOfCoffee, on_delete=models.CASCADE, db_column='Coffee_code', primary_key=True)  # Field name made lowercase.
     coffee_name = models.TextField(db_column='Coffee_name')  # Field name made lowercase.
     date_of_manufacture = models.DateField(db_column='Date_of_manufacture')  # Field name made lowercase.
 
@@ -72,11 +81,3 @@ class Sale(models.Model):
         db_table = 'sale'
         unique_together = (('invoice_number', 'coffee_code', 'manager_service_number'),)
 
-
-class TypeOfCoffee(models.Model):
-    coffee_code = models.IntegerField(db_column='Coffee_code', primary_key=True)  # Field name made lowercase.
-    coffee_type_name = models.TextField(db_column='Coffee_type_name')  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'type_of_coffee'
